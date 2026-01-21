@@ -89,31 +89,399 @@ function loadGalleryImages() {
         galleryGrid.appendChild(galleryItem);
     });
 }
-
-// ===== RANK CARD INTERACTIVITY =====
-document.querySelectorAll('.rank-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-15px) scale(1.02)';
-    });
+// ===== RANK PANEL SLIDER =====
+function initRankSlider() {
+    const rankSlider = document.getElementById('rankSlider');
+    const rankPrev = document.getElementById('rankPrev');
+    const rankNext = document.getElementById('rankNext');
+    const rankPause = document.getElementById('rankPause');
+    const progressDots = document.querySelectorAll('.progress-dot');
+    const currentSlideSpan = document.getElementById('currentSlide');
+    const totalSlidesSpan = document.getElementById('totalSlides');
+    const timerBar = document.getElementById('rankTimerBar');
+    const timerCountdown = document.getElementById('timerCountdown');
     
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// ===== EVENT CARD INTERACTIVITY =====
-document.querySelectorAll('.event-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        const icon = this.querySelector('.event-icon');
-        icon.style.transform = 'scale(1.2) rotate(5deg)';
-    });
+    let currentRankSlide = 0;
+    let isPaused = false;
+    let slideInterval;
+    let countdownInterval;
+    const totalRankSlides = document.querySelectorAll('.rank-slide').length;
+    const slideDuration = 4000; // 4 seconds
     
-    card.addEventListener('mouseleave', function() {
-        const icon = this.querySelector('.event-icon');
-        icon.style.transform = 'scale(1) rotate(0)';
-    });
-});
+    // Set total slides text
+    totalSlidesSpan.textContent = totalRankSlides;
+    
+    // Function to update slider
+    function updateRankSlider() {
+        const slides = document.querySelectorAll('.rank-slide');
+        const statFills = document.querySelectorAll('.stat-fill');
+        const tags = document.querySelectorAll('.tag');
+        const detailItems = document.querySelectorAll('.detail-item');
+        
+        // Update slide visibility
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev');
+            if (index === currentRankSlide) {
+                slide.classList.add('active');
+            } else if (index === (currentRankSlide - 1 + totalRankSlides) % totalRankSlides) {
+                slide.classList.add('prev');
+            }
+        });
+        
+        // Update progress dots
+        progressDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentRankSlide);
+        });
+        
+        // Update current slide number
+        currentSlideSpan.textContent = currentRankSlide + 1;
+        
+        // Animate stats bars for active slide
+        if (slides[currentRankSlide].classList.contains('active')) {
+            // Set target widths for animation
+            statFills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 300);
+            });
+            
+            // Animate tags with delay
+            tags.forEach((tag, index) => {
+                tag.style.setProperty('--tag-index', index);
+            });
+        }
+    }
+    
+    // Function to go to specific slide
+    function goToRankSlide(slideIndex) {
+        currentRankSlide = slideIndex;
+        updateRankSlider();
+        resetAutoPlay();
+    }
+    
+    // Function to go to next slide
+    function nextRankSlide() {
+        currentRankSlide = (currentRankSlide + 1) % totalRankSlides;
+        updateRankSlider();
+        resetAutoPlay();
+    }
+    
+    // Function to go to previous slide
+    function prevRankSlide() {
+        currentRankSlide = (currentRankSlide - 1 + totalRankSlides) % totalRankSlides;
+        updateRankSlider();
+        resetAutoPlay();
+    }
+    
+    // Function to start auto-play
+    function startAutoPlay() {
+        isPaused = false;
+        rankPause.innerHTML = '<i class="fas fa-pause"></i> Pause';
+        
+        // Clear any existing intervals
+        clearInterval(slideInterval);
+        clearInterval(countdownInterval);
+        
+        // Start slide interval
+        slideInterval = setInterval(nextRankSlide, slideDuration);
+        
+        // Start countdown timer
+        startCountdownTimer();
+    }
+    
+    // Function to start countdown timer
+    function startCountdownTimer() {
+        let timeLeft = slideDuration / 1000; // Convert to seconds
+        timerCountdown.textContent = timeLeft;
+        timerBar.style.width = '100%';
+        
+        countdownInterval = setInterval(() => {
+            if (!isPaused) {
+                timeLeft--;
+                timerCountdown.textContent = timeLeft;
+                timerBar.style.width = `${(timeLeft / (slideDuration / 1000)) * 100}%`;
+                
+                if (timeLeft <= 0) {
+                    timeLeft = slideDuration / 1000;
+                }
+            }
+        }, 1000);
+    }
+    
+    // Function to pause auto-play
+    function pauseAutoPlay() {
+        isPaused = true;
+        rankPause.innerHTML = '<i class="fas fa-play"></i> Play';
+        clearInterval(slideInterval);
+        clearInterval(countdownInterval);
+    }
+    
+    // Function to reset auto-play
+    function resetAutoPlay() {
+        if (!isPaused) {
+            clearInterval(slideInterval);
+            clearInterval(countdownInterval);
+            startAutoPlay();
+        }
+    }
+    
+    // Function to toggle auto-play
+    function toggleAutoPlay() {
+        if (isPaused) {
+            startAutoPlay();
+        } else {
+            pauseAutoPlay();
+        }
+    }
+    
+    // Initialize event listeners
+    function initRankSliderEvents() {
+        // Previous button
+        rankPrev.addEventListener('click', () => {
+            prevRankSlide();
+        });
+        
+        // Next button
+        rankNext.addEventListener('click', () => {
+            nextRankSlide();
+        });
+        
+        // Progress dots
+        progressDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToRankSlide(index);
+            });
+        });
+        
+        // Pause/Play button
+        rankPause.addEventListener('click', toggleAutoPlay);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevRankSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextRankSlide();
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                toggleAutoPlay();
+            }
+        });
+        
+        // Pause on hover
+        rankSlider.addEventListener('mouseenter', () => {
+            if (!isPaused) {
+                pauseAutoPlay();
+            }
+        });
+        
+        rankSlider.addEventListener('mouseleave', () => {
+            if (isPaused) {
+                startAutoPlay();
+            }
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        rankSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        rankSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    nextRankSlide();
+                } else {
+                    // Swipe right - previous slide
+                    prevRankSlide();
+                }
+            }
+        }
+    }
+    
+    // Initialize the slider
+    function init() {
+        updateRankSlider();
+        startAutoPlay();
+        initRankSliderEvents();
+        
+        // Animate initial stat bars
+        setTimeout(() => {
+            const statFills = document.querySelectorAll('.stat-fill');
+            statFills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 500);
+            });
+        }, 300);
+    }
+    
+    // Start the slider
+    init();
+    
+    console.log("Rank Panel Slider Initialized!");
+}
 
+// Update DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Abhiyant '26 NCC Fest website loaded successfully!");
+    
+    // Load gallery images
+    loadGalleryImages();
+    
+    // Add active class to first nav item
+    if(navItems.length > 0) {
+        navItems[0].classList.add('active');
+    }
+    
+    // Initialize gallery
+    updateGallery();
+    
+    // Initialize events slider
+    initEventsSlider();
+    
+    // Initialize rank panel slider
+    initRankSlider();
+});    
+    // Initialize animations
+    setTimeout(() => {
+        animateStats();
+        animateComparisonChart();
+    }, 500);
+    
+// Add achievement popup styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .achievement-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .achievement-popup.active {
+            opacity: 1;
+        }
+        
+        .popup-content {
+            background: var(--ncc-white);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--ncc-gold);
+        }
+        
+        .popup-content h4 {
+            color: var(--ncc-navy);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .popup-content ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+        
+        .popup-content li {
+            color: var(--ncc-darkblue);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 128, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .popup-content li:before {
+            content: '✓';
+            color: var(--ncc-red);
+            font-weight: bold;
+        }
+        
+        .popup-close {
+            background: var(--ncc-red);
+            color: var(--ncc-white);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .popup-close:hover {
+            background: #a52a2a;
+            transform: scale(1.05);
+        }
+        
+        .floating-medal {
+            animation: floatUp 1s forwards;
+        }
+        
+        @keyframes floatUp {
+            to {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    console.log("Interactive Rank Panel Loaded!");
+
+
+// Update DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Abhiyant '26 NCC Fest website loaded successfully!");
+    
+    // Load gallery images
+    loadGalleryImages();
+    
+    // Add active class to first nav item
+    if(navItems.length > 0) {
+        navItems[0].classList.add('active');
+    }
+    
+    // Initialize gallery
+    updateGallery();
+    
+    // Initialize events slider
+    initEventsSlider();
+    
+    // Initialize rank panel
+    initRankPanel();
+});
 // ===== STICKY NAVBAR EFFECT =====
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('nccNavbar');
@@ -125,7 +493,188 @@ window.addEventListener('scroll', () => {
         navbar.style.background = 'linear-gradient(90deg, var(--ncc-navy) 0%, var(--ncc-darkblue) 50%, var(--ncc-red) 100%)';
     }
 });
+// ===== EVENTS SLIDER FUNCTIONALITY =====
+const eventsSlider = document.getElementById('eventsSlider');
+const eventsDots = document.getElementById('eventsDots');
+const eventsPrev = document.getElementById('eventsPrev');
+const eventsNext = document.getElementById('eventsNext');
+const autoplayToggle = document.getElementById('autoplayToggle');
+const timerBar = document.getElementById('timerBar');
+let currentEventSlide = 0;
+let autoplayActive = true;
+let autoplayInterval;
+let timerInterval;
+const slideDuration = 2000; // 2 seconds
+const totalSlides = document.querySelectorAll('.event-slide').length;
 
+// Create dots for each slide
+function createDots() {
+    eventsDots.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = `slider-dot ${i === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => goToSlide(i));
+        eventsDots.appendChild(dot);
+    }
+}
+
+// Update slider position
+function updateSlider() {
+    // Move slides
+    const slides = document.querySelectorAll('.event-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    
+    slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentEventSlide);
+    });
+    
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentEventSlide);
+    });
+    
+    // Reset timer bar
+    resetTimer();
+}
+
+// Go to specific slide
+function goToSlide(slideIndex) {
+    currentEventSlide = slideIndex;
+    updateSlider();
+    resetAutoplay();
+}
+
+// Next slide
+function nextSlide() {
+    currentEventSlide = (currentEventSlide + 1) % totalSlides;
+    updateSlider();
+}
+
+// Previous slide
+function prevSlide() {
+    currentEventSlide = (currentEventSlide - 1 + totalSlides) % totalSlides;
+    updateSlider();
+}
+
+// Reset autoplay timer
+function resetAutoplay() {
+    if (autoplayActive) {
+        clearInterval(autoplayInterval);
+        clearInterval(timerInterval);
+        startAutoplay();
+    }
+}
+
+// Start autoplay
+function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, slideDuration);
+    startTimer();
+}
+
+// Start timer bar animation
+function startTimer() {
+    let width = 100;
+    const decrement = 100 / (slideDuration / 10); // Update every 10ms
+    
+    timerInterval = setInterval(() => {
+        width -= decrement;
+        timerBar.style.width = width + '%';
+        
+        if (width <= 0) {
+            width = 100;
+        }
+    }, 10);
+}
+
+// Reset timer bar
+function resetTimer() {
+    clearInterval(timerInterval);
+    timerBar.style.width = '100%';
+    if (autoplayActive) {
+        startTimer();
+    }
+}
+
+// Toggle autoplay
+function toggleAutoplay() {
+    autoplayActive = !autoplayActive;
+    
+    if (autoplayActive) {
+        autoplayToggle.innerHTML = '<i class="fas fa-pause"></i> Pause Auto-slide';
+        startAutoplay();
+    } else {
+        autoplayToggle.innerHTML = '<i class="fas fa-play"></i> Play Auto-slide';
+        clearInterval(autoplayInterval);
+        clearInterval(timerInterval);
+        timerBar.style.width = '100%';
+    }
+}
+
+// Initialize events slider
+function initEventsSlider() {
+    createDots();
+    updateSlider();
+    startAutoplay();
+    
+    // Event listeners
+    eventsPrev.addEventListener('click', () => {
+        prevSlide();
+        resetAutoplay();
+    });
+    
+    eventsNext.addEventListener('click', () => {
+        nextSlide();
+        resetAutoplay();
+    });
+    
+    autoplayToggle.addEventListener('click', toggleAutoplay);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            resetAutoplay();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            resetAutoplay();
+        } else if (e.key === ' ') {
+            e.preventDefault();
+            toggleAutoplay();
+        }
+    });
+    
+    // Pause autoplay on hover
+    eventsSlider.addEventListener('mouseenter', () => {
+        if (autoplayActive) {
+            clearInterval(autoplayInterval);
+            clearInterval(timerInterval);
+        }
+    });
+    
+    eventsSlider.addEventListener('mouseleave', () => {
+        if (autoplayActive) {
+            startAutoplay();
+        }
+    });
+}
+
+// Update the DOMContentLoaded event listener to include:
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Abhiyant '26 NCC Fest website loaded successfully!");
+    
+    // Load gallery images
+    loadGalleryImages();
+    
+    // Add active class to first nav item
+    if(navItems.length > 0) {
+        navItems[0].classList.add('active');
+    }
+    
+    // Initialize gallery
+    updateGallery();
+    
+    // Initialize events slider
+    initEventsSlider();
+});
 // ===== SMOOTH SCROLLING =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
