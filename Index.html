@@ -3,283 +3,273 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhiyant '26 - NCC Fest | Pusa Institute of Technology</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Abhiyant '26 | NCC Fest - Pusa Institute of Technology</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="script" href="java.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header">
-        <div class="container header-container">
-            <div class="logo-container">
-                <div class="ncc-logo">
-                    <i class="fas fa-crosshairs"></i>
-                </div>
+    <!-- NCC Flag Stripe -->
+    <div class="ncc-flag-stripe">
+        <div class="stripe navy"></div>
+        <div class="stripe darkblue"></div>
+        <div class="stripe red"></div>
+    </div>
+
+    <!-- Fixed Navigation Bar -->
+    <nav class="ncc-navbar" id="nccNavbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/National_Cadet_Corps_India.svg/1200px-National_Cadet_Corps_India.svg.png" 
+                     alt="NCC Logo" class="logo-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'">
                 <div class="logo-text">
-                    <h1>Abhiyant '26</h1>
-                    <p>NCC FEST | PUSA INSTITUTE OF TECHNOLOGY</p>
+                    <h1>ABHIYANT <span>'26</span></h1>
+                    <p>NCC FEST | PIT</p>
                 </div>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            </a>
+
+            <button class="nav-toggle" id="navToggle">
                 <i class="fas fa-bars"></i>
             </button>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#intro">About NCC</a></li>
-                    <li><a href="#rank">Rank Panel</a></li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About NCC</a></li>
+                <li><a href="#rank"><i class="fas fa-medal"></i> Rank Panel</a></li>
+                <li><a href="#events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="container hero-content">
-            <h2>Abhiyant '26</h2>
-            <p>Pusa Institute of Technology</p>
-            <div class="date-badge">25 November 2026</div>
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>25th FEB 2026</span>
+            </div>
+            <h1 class="hero-title">UNITY & DISCIPLINE</h1>
+            <h2 class="hero-subtitle">ABHIYANT <span>'26</span></h2>
+            <p class="hero-description">The Premier NCC Fest of Pusa Institute of Technology<br>A celebration of leadership, patriotism, and valor</p>
+            <div class="hero-buttons">
+                <a href="#events" class="btn btn-primary">Explore Events <i class="fas fa-arrow-right"></i></a>
+                <a href="#gallery" class="btn btn-secondary">View Gallery <i class="fas fa-camera"></i></a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
         </div>
     </section>
 
-    <!-- Introduction Section -->
-    <section class="intro-section" id="intro">
-        <div class="container">
-            <div class="section-title">
-                <h2>National Cadet Corps</h2>
+    <!-- About NCC Section -->
+    <section class="about-section" id="about">
+        <div class="section-header">
+            <h2 class="section-title">About NCC & Our Unit</h2>
+            <p class="section-subtitle">The Pride of the Nation, The Future of Our College</p>
+        </div>
+
+        <div class="about-container">
+            <div class="about-content">
+                <h3><i class="fas fa-flag"></i> The National Cadet Corps</h3>
+                <p>The National Cadet Corps (NCC) is the youth wing of the Indian Armed Forces with its headquarters in New Delhi, India. It is open to school and college students on a voluntary basis.</p>
+                <p>Founded under the National Cadet Corps Act of 1948, the NCC motto is <strong>"Unity and Discipline"</strong>. Its aim is to develop character, comradeship, discipline, a secular outlook, the spirit of adventure, and ideals of selfless service amongst young citizens.</p>
+
+                <h3><i class="fas fa-university"></i> NCC at Pusa Institute of Technology</h3>
+                <p>Our college NCC unit stands as a beacon of discipline and excellence. We train cadets in drill, weapon handling, map reading, leadership, and social service. Our cadets have consistently brought laurels to the institute in various camps and competitions.</p>
+                <p>The unit is guided by the principle of <strong>"Nation First, Always First"</strong>, preparing responsible citizens and future leaders for our country.</p>
             </div>
-            <div class="intro-content">
-                <div class="intro-text">
-                    <p>The National Cadet Corps (NCC) is the youth wing of the Indian Armed Forces with its headquarters in New Delhi, India. It is open to school and college students on voluntary basis as a Tri-Services Organisation, comprising the Army, Navy and Air Force, engaged in grooming the youth of the country into disciplined and patriotic citizens.</p>
-                    <p>The NCC in India was formed with the National Cadet Corps Act of 1948. It was raised on 15 July 1948 with the motto "Unity and Discipline". The NCC provides training to the youth in various aspects with the aim to develop character, comradeship, discipline, a secular outlook, the spirit of adventure and ideals of selfless service amongst young citizens.</p>
-                    <div class="ncc-creed">
-                        <h4>NCC Creed</h4>
-                        <p>"To create a human resource of organized, trained and motivated youth, to provide leadership in all walks of life and be always available for the service of the nation. To provide a suitable environment to motivate the youth to take up a career in the armed forces."</p>
-                    </div>
-                </div>
-                <div class="intro-image">
-                    <img src="https://images.unsplash.com/photo-1580137189272-c9379f8864fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="NCC Cadets">
+
+            <!-- Image Gallery Slider -->
+            <div class="about-gallery">
+                <div class="gallery-slide active" style="background-image: url('https://images.unsplash.com/photo-1580137189272-c9379f8864fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="gallery-slide" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="gallery-slide" style="background-image: url('https://images.unsplash.com/photo-1578269174936-2709b6aeb913?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="gallery-slide" style="background-image: url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="gallery-slide" style="background-image: url('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="gallery-slide" style="background-image: url('https://images.unsplash.com/photo-1547626740-02cb6aed9ef8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                
+                <div class="gallery-controls">
+                    <button class="gallery-btn" id="galleryPrev"><i class="fas fa-chevron-left"></i></button>
+                    <span id="galleryCounter">1 / 6</span>
+                    <button class="gallery-btn" id="galleryNext"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Rank Panel Section -->
-    <section class="rank-panel" id="rank">
-        <div class="container">
-            <div class="section-title">
-                <h2>Rank Panel 2026</h2>
-            </div>
-            <div class="rank-subtitle">Meet our distinguished cadet leadership for Abhiyant '26</div>
-            
-            <div class="rank-gallery">
-                <!-- Slide 1 -->
-                <div class="slide active" id="slide1">
-                    <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Senior Under Officer">
-                    <div class="slide-info">
-                        <h3>Senior Under Officer</h3>
-                        <p>Satyam</p>
+    <section class="rank-section" id="rank">
+        <div class="section-header">
+            <h2 class="section-title">Rank Panel 2025-26</h2>
+            <p class="section-subtitle">Leading with Honour & Responsibility</p>
+        </div>
+
+        <div class="rank-container">
+            <!-- Senior Under Officers -->
+            <h3 class="rank-category"><i class="fas fa-star"></i> SENIOR UNDER OFFICERS</h3>
+            <div class="rank-cards">
+                <div class="rank-card">
+                    <div class="rank-badge">SUO</div>
+                    <div class="rank-image" style="background-image: url('https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="rank-info">
+                        <h4>Satyam</h4>
+                        <p>Senior Under Officer</p>
+                        <div class="rank-tag">Battalion Leader</div>
+                        <p class="rank-quote"><i class="fas fa-quote-left"></i> Discipline is the soul of an army</p>
                     </div>
                 </div>
-                <!-- Slide 2 -->
-                <div class="slide" id="slide2">
-                    <img src="https://images.unsplash.com/photo-1547722700-57de53c5c0e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Senior Under Officer">
-                    <div class="slide-info">
-                        <h3>Senior Under Officer</h3>
-                        <p>Arpit Rawat<p>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="slide" id="slide3">
-                    <img src="https://images.unsplash.com/photo-1563485572880-8b33b3bc8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Junior Under Officer">
-                    <div class="slide-info">
-                        <h3>Junior Under Officer</h3>
-                        <p>Shivam Kumar</p>
-                    </div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="slide" id="slide4">
-                    <img src="https://images.unsplash.com/photo-1602485191379-45f5c72d7027?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Junior Under Officer">
-                    <div class="slide-info">
-                        <h3>Junior Under Officer</h3>
-                        <p>Gaurav Kumar</p>
+
+                <div class="rank-card">
+                    <div class="rank-badge">SUO</div>
+                    <div class="rank-image" style="background-image: url('https://images.unsplash.com/photo-1547722700-57de53c5c0e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="rank-info">
+                        <h4>Arpit Rawat</h4>
+                        <p>Senior Under Officer</p>
+                        <div class="rank-tag">Adjutant</div>
+                        <p class="rank-quote"><i class="fas fa-quote-left"></i> True leadership is service</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="rank-indicators" id="rankIndicators">
-                <div class="indicator active" data-slide="0"></div>
-                <div class="indicator" data-slide="1"></div>
-                <div class="indicator" data-slide="2"></div>
-                <div class="indicator" data-slide="3"></div>
+
+            <!-- Junior Under Officers -->
+            <h3 class="rank-category"><i class="fas fa-star-half-alt"></i> JUNIOR UNDER OFFICERS</h3>
+            <div class="rank-cards">
+                <div class="rank-card">
+                    <div class="rank-badge">JUO</div>
+                    <div class="rank-image" style="background-image: url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="rank-info">
+                        <h4>Shivam Kumar</h4>
+                        <p>Junior Under Officer</p>
+                        <div class="rank-tag">Web Team Incharge</div>
+                        <p class="rank-quote"><i class="fas fa-quote-left"></i> Code with discipline, serve with passion</p>
+                    </div>
+                </div>
+
+                <div class="rank-card">
+                    <div class="rank-badge">JUO</div>
+                    <div class="rank-image" style="background-image: url('https://images.unsplash.com/photo-1563485572880-8b33b3bc8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="rank-info">
+                        <h4>Gaurav</h4>
+                        <p>Junior Under Officer</p>
+                        <div class="rank-tag">Logistics Head</div>
+                        <p class="rank-quote"><i class="fas fa-quote-left"></i> Success depends on preparation</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Events Section -->
     <section class="events-section" id="events">
-        <div class="container">
-            <div class="section-title">
-                <h2>Abhiyant '26 Events</h2>
-            </div>
+        <div class="section-header">
+            <h2 class="section-title">Abhiyant '26 Events</h2>
+            <p class="section-subtitle">10 Competitions. 1 Grand Fest. 25th February 2026.</p>
+        </div>
+
+        <div class="events-container">
             <div class="events-grid">
-                <!-- Event 1 -->
                 <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Obstacle Course">
-                    </div>
-                    <div class="event-content">
-                        <h3>Guards Of Honour
-                        
-                        </h3>
-                        <p>Test your physical endurance and mental toughness in our challenging obstacle course designed to push cadets to their limits.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 9:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Kartavya Path</div>
-                        </div>
-                    </div>
+                    <div class="event-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Guards Of Honour</h3>
+                    <p>Prestigious drill display showcasing precision and discipline</p>
                 </div>
-                
-                <!-- Event 2 -->
                 <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Rifle Shooting">
-                    </div>
-                    <div class="event-content">
-                        <h3>Squad Drill</h3>
-                        <p>Demonstrate your marksmanship skills in this precision shooting competition. Safety protocols and expert guidance provided.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 9:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Kartavya Path</div>
-                        </div>
-                    </div>
+                    <div class="event-icon"><i class="fas fa-marching-band"></i></div>
+                    <h3>Squad Drill</h3>
+                    <p>Leadership and coordination test for squad commanders</p>
                 </div>
-                
-                <!-- Event 3 -->
                 <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Leadership Workshop">
-                    </div>
-                    <div class="event-content">
-                        <h3>Best Cadet</h3>
-                        <p>Interactive sessions with retired armed forces officers on leadership principles, strategic thinking, and decision-making under pressure.</p>
-                        <div class="event-details">
-                           <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 9:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Main Auditorium</div>
-                        </div>
-                    </div>
+                    <div class="event-icon"><i class="fas fa-award"></i></div>
+                    <h3>Best Cadet</h3>
+                    <p>Ultimate individual competition for the title of Best Cadet</p>
                 </div>
-                
-                  <!-- Event 4 -->
                 <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Leadership Workshop">
-                    </div>
-                    <div class="event-content">
-                        <h3>Extempore competition</h3>
-                        <p>Interactive sessions with retired armed forces officers on leadership principles, strategic thinking, and decision-making under pressure.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 9:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Main Auditorium</div>
-                        </div>
-                    </div>
+                    <div class="event-icon"><i class="fas fa-microphone-alt"></i></div>
+                    <h3>Extempore</h3>
+                    <p>Think on your feet speech competition</p>
                 </div>
-              
-                   <!-- Event 5 -->
                 <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Leadership Workshop">
-                    </div>
-                    <div class="event-content">
-                        <h3>Volleyball</h3>
-                        <p>Interactive sessions with retired armed forces officers on leadership principles, strategic thinking, and decision-making under pressure.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 9:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Volleyball Ground</div>
-                        </div>
-                    </div>
+                    <div class="event-icon"><i class="fas fa-flag"></i></div>
+                    <h3>Flag Area</h3>
+                    <p>Adventure-based competition with map reading</p>
                 </div>
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-volleyball-ball"></i></div>
+                    <h3>Volleyball</h3>
+                    <p>High-energy team sport tournament</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-fist-raised"></i></div>
+                    <h3>Tug of War</h3>
+                    <p>Classic test of strength and team coordination</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-music"></i></div>
+                    <h3>Cultural Event</h3>
+                    <p>Showcase of music, dance, and folk performances</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-campground"></i></div>
+                    <h3>Tent Pitching</h3>
+                    <p>Practical skill competition for tent setup</p>
+                </div>
+                <div class="event-card">
+                    <div class="event-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Photography</h3>
+                    <p>Capture the spirit of Abhiyant '26</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                   <!-- Event 6 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Leadership Workshop">
-                    </div>
-                    <div class="event-content">
-                        <h3>Tug Of War</h3>
-                        <p>Interactive sessions with retired armed forces officers on leadership principles, strategic thinking, and decision-making under pressure.</p>
-                        <div class="event-details">
-                           <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 9:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Volleyball Ground</div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-header">
+            <h2 class="section-title">Memories Gallery</h2>
+            <p class="section-subtitle">Capturing moments of discipline, unity, and excellence</p>
+        </div>
+        <div class="gallery-container">
+            <div class="gallery-grid">
+                <!-- Images will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
 
-                   <!-- Event 7 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Leadership Workshop">
-                    </div>
-                    <div class="event-content">
-                        <h3>Flag Area</h3>
-                        <p>Interactive sessions with retired armed forces officers on leadership principles, strategic thinking, and decision-making under pressure.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 11:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Flag Section</div>
-                        </div>
-                    </div>
-                </div>
-              
-                     <!-- Event 8 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Leadership Workshop">
-                    </div>
-                    <div class="event-content">
-                        <h3>Tent Pitching</h3>
-                        <p>Interactive sessions with retired armed forces officers on leadership principles, strategic thinking, and decision-making under pressure.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 11:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Workshop 1</div>
-                        </div>
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Get in touch with the NCC unit of Pusa Institute of Technology</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Address</h4>
+                        <p>Pusa Institute of Technology, New Delhi</p>
                     </div>
                 </div>
-              
-                   <!-- Event 9 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Leadership Workshop">
-                    </div>
-                    <div class="event-content">
-                        <h3>Videography & photography</h3>
-                        <p>Interactive sessions with retired armed forces officers on leadership principles, strategic thinking, and decision-making under pressure.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 8:00 AM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> PIT college</div>
-                        </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+91 98765 43210</p>
                     </div>
                 </div>
-              
-
-                <!-- Event 10 -->
-                <div class="event-card">
-                    <div class="event-img">
-                        <img src="https://images.unsplash.com/photo-1519861531473-920034658307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Cultural Night">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>ncc.pit@example.com</p>
                     </div>
-                    <div class="event-content">
-                        <h3>Cultural Event</h3>
-                        <p>A grand celebration featuring patriotic performances, music, and dance showcasing the rich cultural diversity of India.</p>
-                        <div class="event-details">
-                            <div><i class="fas fa-calendar-alt"></i> 25 Febuary, 2:00 PM</div>
-                            <div><i class="fas fa-map-marker-alt"></i> Main Auditorium</div>
-                        </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <div>
+                        <h4>Instagram</h4>
+                        <p>@pit_ncc</p>
                     </div>
                 </div>
             </div>
@@ -287,159 +277,30 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-logo">
-                <h3>Abhiyant '26</h3>
-                <p>NCC Fest | Pusa Institute of Technology</p>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/National_Cadet_Corps_India.svg/800px-National_Cadet_Corps_India.svg.png" 
+                     alt="NCC Logo" class="footer-logo-img">
+                <div>
+                    <h3>ABHIYANT <span>'26</span></h3>
+                    <p>National Cadet Corps Fest</p>
+                </div>
             </div>
-            
-            <div class="social-links">
-                <a href="#" class="social-link" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="social-link" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="#" class="social-link" title="Twitter">
-                    <i class="fab fa-twitter"></i>
-                </a>
+            <div class="footer-social">
+                <a href="https://instagram.com/pit_ncc" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="mailto:nccpit@example.com"><i class="fas fa-envelope"></i></a>
             </div>
-            
-            <div class="copyright">
-                <p>Designed and Developed by <a href="#slide3">Junior Under Officer Shivam Kumar</a></p>
-                <p>© 2026 Abhiyant '26 NCC Fest. All Rights Reserved.</p>
-                <p>Pusa Institute of Technology, 2DBN, Army Wing NCC</p>
-            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 - 2026 ABHIYANT '26 NCC Fest, Pusa Institute of Technology. All Rights Reserved.</p>
+            <p>Designed & Developed with <i class="fas fa-heart"></i> by <strong>Junior Under Officer Shivam Kumar</strong> | NCC PIT Unit</p>
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            if (navMenu.style.display === 'flex') {
-                navMenu.style.display = 'none';
-            } else {
-                navMenu.style.display = 'flex';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '100%';
-                navMenu.style.left = '0';
-                navMenu.style.width = '100%';
-                navMenu.style.backgroundColor = 'rgba(15, 26, 10, 0.98)';
-                navMenu.style.padding = '20px';
-                navMenu.style.gap = '20px';
-            }
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Image slider functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.indicator');
-        const totalSlides = slides.length;
-        
-        // Initialize slider
-        function initSlider() {
-            // Set first slide as active
-            slides[0].classList.add('active');
-            indicators[0].classList.add('active');
-            
-            // Auto slide every 5 seconds
-            setInterval(() => {
-                nextSlide();
-            }, 5000);
-        }
-        
-        // Next slide function
-        function nextSlide() {
-            // Remove active class from current slide
-            slides[currentSlide].classList.remove('active');
-            indicators[currentSlide].classList.remove('active');
-            
-            // Move to next slide
-            currentSlide = (currentSlide + 1) % totalSlides;
-            
-            // Add active class to new slide
-            slides[currentSlide].classList.add('active');
-            indicators[currentSlide].classList.add('active');
-        }
-        
-        // Add click event to indicators
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                // Remove active class from current slide
-                slides[currentSlide].classList.remove('active');
-                indicators[currentSlide].classList.remove('active');
-                
-                // Set new slide
-                currentSlide = index;
-                
-                // Add active class to new slide
-                slides[currentSlide].classList.add('active');
-                indicators[currentSlide].classList.add('active');
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetSection.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
-                    navMenu.style.display = 'none';
-                }
-            });
-        });
-        
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            initSlider();
-            
-            // Add scroll animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe elements for animation
-            document.querySelectorAll('.intro-content, .event-card, .section-title').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(el);
-            });
-        });
-    </script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
