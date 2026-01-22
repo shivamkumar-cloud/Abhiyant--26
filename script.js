@@ -89,7 +89,230 @@ function loadGalleryImages() {
         galleryGrid.appendChild(galleryItem);
     });
 }
-// ===== SIMPLE RANK PANEL ANIMATIONS =====
+// ===== RANK PANEL SLIDER =====
+function initRankSlider() {
+    const rankSlider = document.getElementById('rankSlider');
+    const rankPrev = document.getElementById('rankPrev');
+    const rankNext = document.getElementById('rankNext');
+    const rankPause = document.getElementById('rankPause');
+    const progressDots = document.querySelectorAll('.progress-dot');
+    const currentSlideSpan = document.getElementById('currentSlide');
+    const totalSlidesSpan = document.getElementById('totalSlides');
+    const timerBar = document.getElementById('rankTimerBar');
+    const timerCountdown = document.getElementById('timerCountdown');
+    
+    let currentRankSlide = 0;
+    let isPaused = false;
+    let slideInterval;
+    let countdownInterval;
+    const totalRankSlides = document.querySelectorAll('.rank-slide').length;
+    const slideDuration = 4000; // 4 seconds
+    
+    // Set total slides text
+    totalSlidesSpan.textContent = totalRankSlides;
+    
+    // Function to update slider
+    function updateRankSlider() {
+        const slides = document.querySelectorAll('.rank-slide');
+        const statFills = document.querySelectorAll('.stat-fill');
+        const tags = document.querySelectorAll('.tag');
+        const detailItems = document.querySelectorAll('.detail-item');
+        
+        // Update slide visibility
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active', 'prev');
+            if (index === currentRankSlide) {
+                slide.classList.add('active');
+            } else if (index === (currentRankSlide - 1 + totalRankSlides) % totalRankSlides) {
+                slide.classList.add('prev');
+            }
+        });
+        
+        // Update progress dots
+        progressDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentRankSlide);
+        });
+        
+        // Update current slide number
+        currentSlideSpan.textContent = currentRankSlide + 1;
+        
+        // Animate stats bars for active slide
+        if (slides[currentRankSlide].classList.contains('active')) {
+            // Set target widths for animation
+            statFills.forEach(fill => {
+                const width = fill.style.width;
+                fill.style.width = '0';
+                setTimeout(() => {
+                    fill.style.width = width;
+                }, 300);
+            });
+            
+            // Animate tags with delay
+            tags.forEach((tag, index) => {
+                tag.style.setProperty('--tag-index', index);
+            });
+        }
+    }
+    
+    // Function to go to specific slide
+    function goToRankSlide(slideIndex) {
+        currentRankSlide = slideIndex;
+        updateRankSlider();
+        resetAutoPlay();
+    }
+    
+    // Function to go to next slide
+    function nextRankSlide() {
+        currentRankSlide = (currentRankSlide + 1) % totalRankSlides;
+        updateRankSlider();
+        resetAutoPlay();
+    }
+    
+    // Function to go to previous slide
+    function prevRankSlide() {
+        currentRankSlide = (currentRankSlide - 1 + totalRankSlides) % totalRankSlides;
+        updateRankSlider();
+        resetAutoPlay();
+    }
+    
+    // Function to start auto-play
+    function startAutoPlay() {
+        isPaused = false;
+        rankPause.innerHTML = '<i class="fas fa-pause"></i> Pause';
+        
+        // Clear any existing intervals
+        clearInterval(slideInterval);
+        clearInterval(countdownInterval);
+        
+        // Start slide interval
+        slideInterval = setInterval(nextRankSlide, slideDuration);
+        
+        // Start countdown timer
+        startCountdownTimer();
+    }
+    
+    // Function to start countdown timer
+    function startCountdownTimer() {
+        let timeLeft = slideDuration / 1000; // Convert to seconds
+        timerCountdown.textContent = timeLeft;
+        timerBar.style.width = '100%';
+        
+        countdownInterval = setInterval(() => {
+            if (!isPaused) {
+                timeLeft--;
+                timerCountdown.textContent = timeLeft;
+                timerBar.style.width = `${(timeLeft / (slideDuration / 1000)) * 100}%`;
+                
+                if (timeLeft <= 0) {
+                    timeLeft = slideDuration / 1000;
+                }
+            }
+        }, 1000);
+    }
+    
+    // Function to pause auto-play
+    function pauseAutoPlay() {
+        isPaused = true;
+        rankPause.innerHTML = '<i class="fas fa-play"></i> Play';
+        clearInterval(slideInterval);
+        clearInterval(countdownInterval);
+    }
+    
+    // Function to reset auto-play
+    function resetAutoPlay() {
+        if (!isPaused) {
+            clearInterval(slideInterval);
+            clearInterval(countdownInterval);
+            startAutoPlay();
+        }
+    }
+    
+    // Function to toggle auto-play
+    function toggleAutoPlay() {
+        if (isPaused) {
+            startAutoPlay();
+        } else {
+            pauseAutoPlay();
+        }
+    }
+    
+    // Initialize event listeners
+    function initRankSliderEvents() {
+        // Previous button
+        rankPrev.addEventListener('click', () => {
+            prevRankSlide();
+        });
+        
+        // Next button
+        rankNext.addEventListener('click', () => {
+            nextRankSlide();
+        });
+        
+        // Progress dots
+        progressDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                goToRankSlide(index);
+            });
+        });
+        
+        // Pause/Play button
+        rankPause.addEventListener('click', toggleAutoPlay);
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevRankSlide();
+            } else if (e.key === 'ArrowRight') {
+                nextRankSlide();
+            } else if (e.key === ' ') {
+                e.preventDefault();
+                toggleAutoPlay();
+            }
+        });
+        
+        // Pause on hover
+        rankSlider.addEventListener('mouseenter', () => {
+            if (!isPaused) {
+                pauseAutoPlay();
+            }
+        });
+        
+        rankSlider.addEventListener('mouseleave', () => {
+            if (isPaused) {
+                startAutoPlay();
+            }
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        rankSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        rankSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next slide
+                    nextRankSlide();
+                } else {
+                    // Swipe right - previous slide
+                    prevRankSlide();
+                }
+            }
+        }
+    }
+    
+    // ===== SIMPLE RANK PANEL ANIMATIONS =====
 function initSimpleRankPanel() {
     const rankCards = document.querySelectorAll('.rank-card');
     
@@ -138,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize simple rank panel
     initSimpleRankPanel();
-})
+});
     // Initialize the slider
     function init() {
         updateRankSlider();
@@ -162,7 +385,7 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
     
     console.log("Rank Panel Slider Initialized!");
-x
+}
 
 // Update DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
